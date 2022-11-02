@@ -1,0 +1,119 @@
+<div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="alertsDropdown">
+                                <h6 class="dropdown-header">
+                                    Medicine Alert
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <table  class="table table-bordered table-hover table-striped" 
+                                    style="background-color:rgb(220,237,239);">
+                                       <thead>
+                                          <th>Commercial Name</th>
+                                          <th>Quantity</th>
+                                          <th>Dosage</th>
+                                          <th>Batch No</th>
+                                          <th>Expiry date</th>
+                                       </thead>
+                                       <tbody>
+                                          @foreach($stocks as $stock)
+                                          <tr>
+                                             @foreach($medicines as $medicine)
+                                                @if($medicine->id == $stock->medicine_id)
+                                                   <td>{{$medicine->commercial_name}}</td>
+                                                @endif
+                                             @endforeach
+                                             <td>{{$stock->quantity}}</td>
+                                             <td>{{$stock->dosage}}</td>
+                                             <td>{{$stock->batch_no}}</td>
+                                             <td>{{$stock->expiry_date}}</td>
+                                          </tr>
+                                          @endforeach
+                                       </tbody>
+                                    </table>
+                                </a>
+                                <!--<a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-success">
+                                            <i class="fas fa-donate text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 7, 2019</div>
+                                        $290.29 has been deposited into your account!
+                                    </div>
+                                </a>-->
+                                
+                            </div>  
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+<div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="alertsDropdown">
+                                <h6 class="dropdown-header">
+                                    Medicine Alert
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <table  class="table table-bordered table-hover table-striped" 
+                                    style="background-color:rgb(220,237,239);">
+                                       <thead>
+                                          <th>Commercial Name</th>
+                                          <th>Quantity</th>
+                                          <th>Dosage</th>
+                                          <th>Batch No</th>
+                                          <th>Expiry date</th>
+                                       </thead>
+                                       <tbody>
+                                          @foreach($lessstocks as $lessstock)
+                                          <tr>
+                                             @foreach($medicines as $medicine)
+                                                @if($medicine->id == $lessstock->medicine_id)
+                                                   <td>{{$medicine->commercial_name}}</td>
+                                                @endif
+                                             @endforeach
+                                             <td>{{$lessstock->quantity}}</td>
+                                             <td>{{$lessstock->dosage}}</td>
+                                             <td>{{$lessstock->batch_no}}</td>
+                                             <td>{{$lessstock->expiry_date}}</td>
+                                          </tr>
+                                          @endforeach
+                                       </tbody>
+                                    </table>
+                                </a>
+                                <!--<a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-success">
+                                            <i class="fas fa-donate text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 7, 2019</div>
+                                        $290.29 has been deposited into your account!
+                                    </div>
+                                </a>-->
+                                
+                            </div>  
