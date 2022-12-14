@@ -29,196 +29,273 @@
 @endif
 
 <div class="content-header">
-            <div class="container-fluid">
-               <div class="row mb-2">
-                  <div class="col-sm-6">
-                        <h1 class="m-0" style="color: rgb(166, 145, 219);"><span class="fa fa-receipt"></span> Invoice</h1>
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-sm-6">
-                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Invoice</li>
-                     </ol>
-                  </div>
-                  <!-- /.col -->
-               </div>
-               <!-- /.row -->
-            </div>
-            <!-- /.container-fluid -->
+   <div class="container-fluid">
+      <div class="row mb-2">
+         <div class="col-sm-6">
+            <h1 class="m-0" style="color: rgb(166, 145, 219);"><span class="fa fa-receipt"></span> Invoice</h1>
          </div>
-         <!-- /.content-header -->
-         <!-- Main content -->
-         <section class="content">
-         
-            <!--Add card detail and invoice detail-->
-         <div class="container-fluid">
-               <div class="card-info">
-                  <div class="card-header">
-                     <h3 class="card-title"> <span class="fa fa-receipt fa-xs"></span> Invoice Information</h3>
-                  </div>
-                  <!-- /.card-header -->
-                  <!-- form start -->
-                  <div class="card-body">
-                  @php
-                  $n=0;
-                  @endphp
-                  <!--<div class="row">
-                  <div class="col-md-3 mr-3">
-                     <div class="form-group">
-                        <label>Product</label>
-                        <input type="text" class="form-control" name="product" id="product" style="border-color: rgba(140, 133, 199); background-color:transparent; color:black" placeholder="Product">
-                        <font style="color:red"> {{ $errors->has('product') ?  $errors->first('product') : '' }} </font>
-                     </div>
-                  </div>
-                  <div class="col-md-3 mr-3">
-                     <div class="form-group">
-                        <label>Quantity</label>
-                        <input type="number" class="form-control" name="quantity" id="quantity" style="border-color: rgba(140, 133, 199); background-color:transparent; color:black" placeholder="Quantity">
-                        <font style="color:red"> {{ $errors->has('quantity') ?  $errors->first('quantity') : '' }} </font>
-                     </div>
-                  </div>
-                  <div class="col-md-3 mr-3">
-                     <div class="form-group">
-                        <label>Unit Price</label>
-                        <input type="number" class="form-control" name="unitprice" id="unitprice" style="border-color: rgba(140, 133, 199); background-color:transparent; color:black" placeholder="Unit Price">
-                        <font style="color:red"> {{ $errors->has('unitprice') ?  $errors->first('unitprice') : '' }} </font>
-                     </div>
-                  </div>
-                  </div>
--->               <div class="row">
-                  <div class="col-md-2">
-                     <div class="form-group">
-                        <label>Invoice Number</label>
-                        <input type="text" class="form-control" name="product" id="product" style="border-color: rgba(140, 133, 199); background-color:transparent; color:black">
-                     </div>
-                  </div>
-                  <div class="col-md-2">
-                     <div class="form-group">
-                        <label>Customer Name</label>
-                        <input type="text" class="form-control" name="product" id="product" style="border-color: rgba(140, 133, 199); background-color:transparent; color:black">
-                     </div>
-                  </div>
-                  <div class="col-md-2">
-                     <div class="form-group">
-                        <label>Invoice Person</label>
-                        <input type="text" class="form-control" name="product" id="product" style="border-color: rgba(140, 133, 199); background-color:transparent; color:black" value="{{Auth::user()->username}}" readonly>
-                     </div>
-                  </div>
-                  <div class="col-md-2">
-                     <div class="form-group">
-                        <label>Date</label>
-                        <input type="datetime-local" class="form-control" name="datetime" id="datetime" style="border-color: rgba(140, 133, 199); background-color:transparent; color:black">
-                     </div>
-                     <p id="datetimejs"></p>
-                     <script>
-                        var today = new Date();
-                        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-                        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-                        var dateTime = date+' '+time;
- 
-                           //console.log(dateTime);
-                        document.getElementById("datetimejs").innerHTML = dateTime;
-                     </script>
-                  </div>
-                  <div class="col-md-2">
-                     <div class="form-group">
-                        <label>Paymet type</label>
-                        <select class="form-select" style="border-color: rgba(140, 133, 199);background-color:transparent; color:black">
-                                       <option value="" selected disabled>Select Payment type</option>
-                                       <option value="Card"><strong>Card</strong></option>
-                                       <option value="Cash"><strong>Cash</strong></option>
-                                       </select>
-                     </div>
-                  </div>
-                  </div>
-                        <form action="{{route('invoices.store')}}" method="post">
-                           @csrf
-                        <table class="table table-bordered">
-                     <caption>Invoice</caption>
-                     <thead>
-                        <tr>
-                           <th>No</th>
-                           <th>Product</th>
-                           <th>Quantity</th>
-                           <th>Unit Price</th>
-                           <th>Total</th>
-                        </tr>
-                        <tr>
-                           <td><div class="col-md-12">
-                              <input type="text" class="form-control" style="border-color: rgba(140, 133, 199);">
-                              </div>
-                           </td>
-                           <td><div class="col-md-12">
-                              <input type="text" class="form-control" style="border-color: rgba(140, 133, 199);">
-                              </div>
-                           </td>
-                           <td><div class="col-md-12">
-                              <input type="text" class="form-control" style="border-color: rgba(140, 133, 199);">
-                              </div>
-                           </td>
-                           <td><div class="col-md-12">
-                              <input type="text" class="form-control" style="border-color: rgba(140, 133, 199);"">
-                              </div>
-                           </td>
-                           <td><div class="col-md-12">
-                              <input type="text" class="form-control" style="border-color: rgba(140, 133, 199);">
-                              </div>
-                           </td>
-                        </tr>
-                     </thead>
-                        <!--<tbody id="addRow" class="addRow"></tbody>
-                        <tbody>
-                           <tr>
-                              <td colspan="1" class="text-right">
-                              <div class="col-md-6">
-                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item disabled">Sub Total</li></br>
-                                 </ul>
-                              </div>
-                              </td>
-                              <td>
-                                 <input type="number" id="estimated_ammount" class="estimated_ammount" value="0" readonly>
-                              </td>
-                           </tr>
-                     </tbody>-->
-                     </table>
-                     <div class="text-right">
-                     <div class="form-group">
-                        <button id="addMore" type="button" class="btn btn-md button1" style="background-color: rgba(16, 117, 134); color:white"><i class= "fa fa-plus"></i> Add more</button>
-                     </div>
-                  </div>
-                        
-                        <!--<input type="submit" name="addInvoice" value="Add Invoice">-->
-                        
-                     
-                        </form>
-                     
-                  <!--<div class="text-right">
-                     <button type="submit" class="btn btn-md" style="background-color: rgba(16, 117, 134); color:white"><i class= "fa fa-plus"></i> Add more</button>
-                     <button type="submit" class="btn btn-md" style="background-color: rgba(169, 34, 48); color:white"><i class="fa-regular fa-trash-alt"></i> Delete</button>
-                  </div>--></br>
-                  <div class="col-md-6">
-                  <ul class="list-group list-group-flush">
-                     <li class="list-group-item disabled">Sub Total</li></br>
-                     <li class="list-group-item disabled">Discount %</li></br>
-                     <li class="list-group-item disabled">Discount</li></br>
-                     <li class="list-group-item disabled">Grand Total</li></br>
-                  </ul>
-                  </div>
+         <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+               <li class="breadcrumb-item"><a href="#">Home</a></li>
+               <li class="breadcrumb-item active">Invoice</li>
+            </ol>
+         </div>
+      </div>
+   </div>
+</div>
+<section class="content">
+   <div class="container-fluid">
+      <div class="card-info">
+         <div class="card-header">
+            <h3 class="card-title"> <span class="fa fa-receipt fa-xs"></span> Invoice Information</h3>
+         </div>
+        <div class="card-body">
+         <div class="row">
+            <div class="col-md-2">
+               <div class="form-group">
+                  <label>Invoice Number</label>
+                  <input type="text" class="form-control" name="product" id="product" style="border-color: rgba(140, 133, 199); background-color:transparent; color:black">
+               </div>
+            </div>
+            <div class="col-md-2">
+               <div class="form-group">
+                  <label>Customer Name</label>
+                  <input type="text" class="form-control" name="product" id="product" style="border-color: rgba(140, 133, 199); background-color:transparent; color:black">
+               </div>
+            </div>
+            <div class="col-md-2">
+               <div class="form-group">
+                  <label>Invoice Person</label>
+                  <input type="text" class="form-control" name="product" id="product" style="border-color: rgba(140, 133, 199); background-color:transparent; color:black" value="{{Auth::user()->username}}" readonly>
+               </div>
+            </div>
+            <div class="col-md-2">
+               <div class="form-group">
+                  <label>Date</label>
+                  <input type="datetime-local" class="form-control" name="datetime" id="datetime" style="border-color: rgba(140, 133, 199); background-color:transparent; color:black">
+               </div>
+               <p id="datetimejs"></p>
+            </div>
+                 
+            <div class="col-md-2">
+               <label>Payment type</label>
+               <div class="custom-control custom-radio">
+                  <input class="custom-control-input custom-control-input-success" type="radio" name="paytype" value="Cash" id="paycash">
+                  <label class="custom-control-label" for="paycash">
+                     <i class="fa fa-money-bill fa-xl pr-2"></i> Cash
+                  </label>
+               </div>
+               <div class="custom-control custom-radio">
+                  <input class="custom-control-input custom-control-input-success" type="radio" name="paytype" value="Card" id="paycard">
+                  <label class="custom-control-label" for="paycard">
+                     <i class="fa fa-credit-card fa-xl pr-2"></i> Card
+                  </label>
+               </div>  
+            </div></br>
+         </div>
 
-                  </div>
+         <form action="{{route('invoices.store')}}" method="post">
+            @csrf
+            @php
+            $n=0;
+            @endphp
+            <table class="table table-bordered" id="dynamicAddRemove">
+               <caption>Invoice</caption>
+               <thead>
+                  <tr>
+                     <th>No</th>
+                     <th>Product</th>
+                     <th>Code</th>
+                     <th>Quantity</th>
+                     <th>Unit Price</th>
+                     <th>Total</th>
+                     <th>Action</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="no" value="{{$n}}" onchange="getValue(this);">{{++$n}}</td>
+                     <td>
+                        <div class="col-md-12">
+                           <select class="form-select selectmedicine" id="medicine_id[0]" name="moreFields[0]medicine_id" style="border-color: rgba(140, 133, 199);">
+                              <option value="" selected disabled>Select Product</option>
+                                 @foreach($medicines as $medicine)
+                                 {
+                                    <option value="{{$medicine->id}}"><strong>{{$medicine->commercial_name}}</strong></option>
+                                 }
+                                 @endforeach
+                           </select>
+                        </div>
+                     </td>
 
-                  <div class="card-footer">
-                  
-                  <div class="text-left">
+                     <td>
+                        <div class="col-md-12">
+                           <select class="form-select selectstock" id="product[0]" name="moreFields[0]product" style="border-color: rgba(140, 133, 199);">
+                              <option value="0" disabled="true" selected="true">Select Code</option>
+                           </select>
+                        </div>
+                     </td>
+
+                     <td>
+                        <div class="col-md-12">
+                           <input type="number" class="form-control" id="quantity[0]" name="moreFields[0]quantity" oninput="calculate();" style="border-color: rgba(140, 133, 199);">
+                        </div>
+                     </td>
+
+                     <td>
+                        <div class="col-md-12" >
+                           <div class="unitprice" style="border-color: rgba(140, 133, 199);">
+                              <input type="text" class="form-control" id="unitprice[0]" name="moreFields[0]unitprice" oninput="calculate();" style="border-color: rgba(140, 133, 199);">
+                           </div>
+                        </div>
+                     </td>
+
+                     <td>
+                        <div class="col-md-12">
+                           <input type="text" class="form-control" id="total[0]" name="moreFields[0]total" oninput="calculate();" style="border-color: rgba(140, 133, 199);">
+                        </div>
+                     </td>
+
+                     <td>
+                        <div class="form-group">
+                           <button id="add-btn" type="button" class="btn btn-md button1" style="background-color: rgba(16, 117, 134); color:white"><i class= "fa fa-plus"></i></button>
+                        </div>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+            </br>
+         </form>
+         <table>
+                     <tr>
+                        <th><div class="pr-5 pb-3" >Subtotal<div></th>
+                        <td><div class="pb-3"><input type="text" class="form-control " id="subtotal" name="subtotal" style="border-color: rgba(140, 133, 199); background-color:transparent; color:black;" /></td></div>
+                     </tr>
+                     <tr>
+                        <th><div class="pr-5 pb-3" >Discount%<div></th>
+                        <td><div class="pb-3"><input type="text" class="form-control" name="" style="border-color: rgba(140, 133, 199); background-color:transparent; color:black;"/></td></div>
+                     </tr>
+                     <tr>
+                        <th><div class="pr-5 pb-3" >Discount<div></th>
+                        <td><div class="pb-3"><input type="text" class="form-control" name="" style="border-color: rgba(140, 133, 199); background-color:transparent; color:black;"/></td></div>
+                     </tr>
+                     <tr>
+                        <th><div class="pr-5 pb-3" >Net amount<div></th>
+                        <td><div class="pb-3"><input type="text" class="form-control" name="" style="border-color: rgba(140, 133, 199); background-color:transparent; color:black;"/></td></div>
+                     </tr>
+                     <tr>
+                        <th><div class="pr-5 pb-3" >Cash<div></th>
+                        <td><div class="pb-3"><input type="text" class="form-control" name="" style="border-color: rgba(140, 133, 199); background-color:transparent; color:black;"/></td></div>
+                     </tr>
+                     <tr>
+                        <th><div class="pr-5 pb-3" >Balance<div></th>
+                        <td><div class="pb-3"><input type="text" class="form-control" name="" style="border-color: rgba(140, 133, 199); background-color:transparent; color:black;"/></td></div>
+                     </tr>
+                  </table>
+
+         <div class="card-footer">
+            <div class="text-left">
                <a class="btn button1" style="background-color: rgba(140, 133, 199); color:white" href="{{route('back')}}"><i class="fa fa-arrow-left"></i><b> Back</b></a>
             </div>
-                  <div class="text-right">
-                     <button type="submit" class="btn btn-md button1" style="background-color: rgba(16, 117, 134); color:white"><i class= "fa fa-receipt"> <i class= "fa fa-plus fa-xs"></i></i> Save Invoice</button>
-                  </div>
+            <div class="text-right">
+               <button type="submit" class="btn btn-md button1" style="background-color: rgba(16, 117, 134); color:white"><i class= "fa fa-receipt"> <i class= "fa fa-plus fa-xs"></i></i> Save Invoice</button>
+            </div>
                   
-                  </div>
-               </div>
+         </div>
+
+        </div>
+      </div>
+   </div>
+
+<script>
+   var i=0;
+   $("#add-btn").click(function(){
+   ++i;
+   var n = ($('#dynamicAddRemove tr').length-0);
+   $("#dynamicAddRemove").append('<tr><td class="no">'+ n +'</td><td><div class="col-md-12"><select class="form-select selectmedicine" id="medicine_id['+i+']" name="moreFields['+i+']medicine_id" style="border-color: rgba(140, 133, 199);"><option value="" selected disabled>Select Product</option>@foreach($medicines as $medicine){<option value="{{$medicine->id}}"><strong>{{$medicine->commercial_name}}</strong></option>}@endforeach</select></div></td><td><div class="col-md-12"><select class="form-select selectstock" id="product['+i+']" name="moreFields['+i+']product" style="border-color: rgba(140, 133, 199);"><option value="0" disabled="true" selected="true">Select Code</option></select></div></td><td><div class="col-md-12"><input type="number" class="form-control" id="quantity['+i+']" name="moreFields['+i+']quantity" oninput="calculate();" style="border-color: rgba(140, 133, 199);"></div></td><td><div class="col-md-12" ><div class="unitprice" style="border-color: rgba(140, 133, 199);"><input type="text" class="form-control" id="unitprice['+i+']" name="moreFields['+i+']unitprice" oninput="calculate();"style="border-color:rgba(140,133,199);"></div></div></td><td><div class="col-md-12"><input type="text" class="form-control" id="total['+i+']" name="moreFields['+i+']total" oninput="calculate();" style="border-color: rgba(140, 133, 199);"></div></td><td><button type="button" class="btn btn-md button1 remove-tr" style="background-color: rgb(147,36,47); color:white"><i class= "fa fa-trash-alt"></i></button></td></tr>');
+});
+
+$(document).on('click', '.remove-tr', function(){  
+$(this).parents('tr').remove();
+});
+
+var subtotal=0;
+
+function calculate() {
+	for(let j=0; j<=i; j++)
+	{
+        var myBox1 = document.getElementById('quantity['+j+']').value; 
+		var a = myBox1;
+        var myBox2 = document.getElementById('unitprice['+j+']').value;
+		var b = myBox2;
+        //var result = document.getElementById('total['+j+']'); 
+		
+        var myResult = a * b;
+		
+        document.getElementById('total['+j+']').value = myResult;
+		
+		subtotal =subtotal+myResult;
+		document.getElementById('subtotal').value = subtotal;
+	}
+	
+}
+
+$(document).ready(function()
+{
+   $(document).on('change','.selectmedicine',function(){
+      //console.log("hhh");
+
+      var mid = $(this).val();
+      console.log("mid"+mid);
+
+      
+      var op=" ";
+      
+      $.ajax({
+         type:'get',
+         url:'{!!URL::to('getdetails')!!}',
+         data:{'id':mid},
+         success:function(data){
+            console.log('suceess');
+
+            $(".selectstock").html(""); 
+            op+='<option value="0" selected disabled>Select</option>';
+					for(var i=0;i<data.length;i++){
+					op+='<option value="'+data[i].id+'">'+data[i].id+'</option>';
+				   }
+               $(".selectstock").append(op);
+               
+         },
+         error:function(){
+
+         }
+      });
+   });
+
+   function getValue(str) {
+    alert(str.value);
+    console.log("eee");}
+
+   $(document).on('change','.selectstock',function()
+   {
+      var sid = $(this).val();
+      console.log("sid"+sid);
+      var op=" ";
+      $.ajax({
+         type:'get',
+         url:'{!!URL::to('getUnitprice')!!}',
+         data:{'id':sid},
+         success:function(data){
+            console.log(data[0].unitprice);
+            var up = data[0].unitprice;
+            $(".unitprice").html("");
+            op+= '<input type="text" class="form-control" oninput="calculate();" style="border-color: rgba(140, 133, 199);" value='+data[0].unitprice+' />';
+            $(".unitprice").append(op);
+         }
+      });
+   });
+   
+});
+</script>
 </section>
 @endsection

@@ -80,11 +80,12 @@
                                  <div class="col-md-3">
             <div class="form-group">
                 <label>Commercial Name</label>
-                <select class="form-select form-control-border border-width-2" name="commercial_name" style="border-color: rgba(140, 133, 199);" value="{{$stock->commercial_name}}">
+                
+                <select class="form-select form-control-border border-width-2" name="medicine_id" style="border-color: rgba(140, 133, 199);" value="{{$stock->medicine_id}}">
                     <option value="" disabled="disabled">Commercial Name</option>
                         @foreach($medicines as $medicine)
                         {
-                            <option value="{{$medicine->commercial_name}}" {{ ( $medicine->commercial_name==$stock->commercial_name) ? 'selected' : '' }}><strong>{{$medicine->commercial_name}}</strong></option>
+                            <option value="{{$medicine->id}}" {{ ( $medicine->id==$stock->medicine_id) ? 'selected' : '' }}><strong>{{$medicine->commercial_name}}</strong></option>
                             
                         }
                         @endforeach

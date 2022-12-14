@@ -58,9 +58,9 @@
    <div class="container-fluid"><br/>
    <div class="tab">
   <button class="tablinks" onclick="openSearch(event, 'Search Name')">Search by Name</button>
-  <button class="tablinks" onclick="openSearch(event, 'Search Category')">Search by Category</button>
+  <!--<button class="tablinks" onclick="openSearch(event, 'Search Category')">Search by Category</button>-->
   <!--<button class="tablinks" onclick="openSearch(event, 'Search Type')">Search by Type</button>-->
-  <button class="tablinks" onclick="openSearch(event, 'Search Supplier')">Search by Supplier</button>
+  <!--<button class="tablinks" onclick="openSearch(event, 'Search Supplier')">Search by Supplier</button>-->
 </div>
 
 <!-- Tab content -->

@@ -30,16 +30,15 @@
                   <!-- /.card-header -->
     <div class="card-body">
                   <div class="row">
-                     <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                           <strong>ID:</strong>
-                           {{$stock->id}}
-                        </div>
-                     </div>
+                     
                      <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                            <strong>Commercial Name:</strong>
-                           {{$stock->commercial_name}}
+                           @foreach($medicines as $medicine)
+                              @if($medicine->id == $stock->medicine_id)
+                                 <td>{{$medicine->commercial_name}}</td>
+                              @endif
+                           @endforeach
                         </div>
                      </div>
                      <div class="col-xs-12 col-sm-12 col-md-12">
@@ -129,11 +128,11 @@
 
                      <div class="card-footer">
                         <a class="btn button1" style="background-color: rgba(140, 133, 199); color:white" href="{{route('stocks.index')}}"><i class="fa fa-arrow-left"></i><b> Back</b></a>
-                        <!--<a style="color: rgb(23, 162, 184);" class="btn-xs" href="{{route('stocks.index')}}" role="button"><i class="fa fa-arrow-left fa-2xl"></i></a>--?
+                        <!--<a style="color: rgb(23, 162, 184);" class="btn-xs" href="{{route('stocks.index')}}" role="button"><i class="fa fa-arrow-left fa-2xl"></i></a>-->
                     </div>
                   
                </div>
             </div>
-            <!-- /.container-fluid -->
+            <!--/.container-fluid -->
 </section>
 @endsection

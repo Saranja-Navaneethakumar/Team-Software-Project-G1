@@ -33,13 +33,13 @@
             <div class="container-fluid">
                <div class="row mb-2">
                   <div class="col-sm-6">
-                        <h1 class="m-0" style="color: rgb(166, 145, 219);"><span class="fa fa-layer-group"></span>All Stocks</h1>
+                        <h1 class="m-0" style="color: rgb(166, 145, 219);"><span class="fa fa-layer-group"></span>Total Stocks</h1>
                   </div>
                   <!-- /.col -->
                   <div class="col-sm-6">
                      <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">All Stocks</li>
+                        <li class="breadcrumb-item active">Total Stocks</li>
                      </ol>
                   </div>
                   <!-- /.col -->
@@ -51,11 +51,9 @@
          <!-- /.content-header -->
          <!-- Main content -->
 <section class="content">
-@if(Auth::user()->role!='Employee')
     <div class="text-right">
          <a class="btn btn-md button1" style="background-color: rgba(26,123,146); color:white;" href="{{route('stocks.create')}}"><i class="fa fa-layer-group"></i> Add Stock</a>
     </div>
-   @endif
     <div class="input-group rounded col-9 pb-5">
             <form  action="{{route('medicinessearch')}}" method="get">
                @csrf
@@ -79,30 +77,12 @@
                   <table id="stocks" class="table table-bordered table-striped">
                     <caption>All stocks</caption>
                      <thead>
-                        <tr>
+                        <tr> 
                            <th>NO</th>
                            <th>Commercial Name</th>
-                           <th>Medical Name</th>
-                           <th>Company Name</th>
-                           <th>Category</th>
-                           <th>Type</th>
-                           <th>Usage</th>
                            <th>Dosage</th>
                            <th>Unit</th>
-                           <th>Unit Cost</th>
-                           <th>Unit Price</th>
-                           <th>Box Size</th>
-                           <th>No of Boxes</th>
                            <th>Quantity</th>
-                           <th>Price</th>
-                           <th>Cost</th>
-                           <th>Expiry Date</th>
-                           <th>Supplier</th>
-                           <th>Batch No</th>
-                           <th>Medicine Created By</th>
-                           <th>Medicine Created Time</th>
-                           <th>Stock Created By</th>
-                           <th>Stock Created Time</th>
                         </tr>
                      </thead>
                      <tbody>
@@ -112,34 +92,22 @@
                         @foreach($medicines as $medicine)
                               @if($medicine->id == $stock->medicine_id)
                                  <td>{{$medicine->commercial_name}}</td>
-                                 <td>{{$medicine->medical_name}}</td>
-                                 <td>{{$medicine->company_name}}</td>
-                                 <td>{{$medicine->category}}</td>
-                                 <td>{{$medicine->type}}</td>
-                                 <td>{{$medicine->usage}}</td>
                               @endif
                            @endforeach
                            <td>{{$stock->dosage}}</td>
                            <td>{{$stock->unit}}</td>
-                           <td>{{$stock->unitcost}}</td>
-                           <td>{{$stock->unitprice}}</td>
-                           <td>{{$stock->box_size}}</td>
-                           <td>{{$stock->noboxes}}</td>
                            <td>{{$stock->quantity}}</td>
-                           <td>{{$stock->price}}</td>
-                           <td>{{$stock->cost}}</td>
-                           <td>{{$stock->expiry_date}}</td>
-                           <td>{{$stock->supplier_name}}</td>
-                           <td>{{$stock->batch_no}}</td>
-                           @foreach($medicines as $medicine)
-                              @if($medicine->id == $stock->medicine_id)
-                                 <td>{{$medicine->created_by}}</td>
-                                 <td>{{$medicine->created_time}}</td>
-                              @endif
-                           @endforeach
-                           <td>{{$stock->created_by}}</td>
-                           <td>{{$stock->created_time}}</td>
-                           
+                           @if(Auth::user()->role=='Admin')
+                           <td>
+                              <a style="color: rgb(17,122,139);" class="btn-xs" href="#" role="button"><i class="fa-regular fa-eye fa-xl"></i></a>
+                                 <a style="color: rgb(0, 128, 0);" class="btn-xs" href="#" role="button"><i class="fa-regular fa-pen-to-square fa-xl"></i></a>
+                                 <button style="color: rgb(169, 34, 48);" class="btn-xsmall border-0 bg-transparent" type="submit"><i class="fa-regular fa-trash-alt fa-xl"></i></button>
+                           </td>
+                           @elseif(Auth::user()->role!='Admin')
+                           <td>
+                              <a style="color: rgb(17,122,139);" class="btn-xs" href="#" role="button"><i class="fa-regular fa-eye fa-xl"></i></a>
+                           </td>
+                           @endif
                         </tr>
                         
                         @endforeach

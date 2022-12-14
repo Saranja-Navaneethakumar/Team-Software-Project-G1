@@ -108,14 +108,14 @@
                            <td>{{$supplier->created_by}}</td>
                            <td>{{$supplier->created_time}}</td>
                            <td class="text-center">
-                              <form action="#" method="post">
+                              <form action="{{route('suppliers.destroy',$supplier->id)}}" method="post">
                                  @csrf
                                  @method('DELETE')
                                  <a style="color: rgb(17,122,139);" class="btn-xs" href="{{route('suppliers.show',$supplier->id)}}" role="button"><i class="fa-regular fa-eye fa-xl"></i></a>
                                  <a style="color: rgb(0, 128, 0);" class="btn-xs" href="{{route('suppliers.edit',$supplier->id)}}" role="button"><i class="fa-regular fa-pen-to-square fa-xl"></i></a>
                                  <button style="color: rgb(205,54,68);" class="btn-xsmall border-0 bg-transparent" type="submit"><i class="fa-regular fa-trash-alt fa-xl"></i></button>
                                  <!--<a class="btn btn-sm btn-danger btn-circle" href="#" data-toggle="modal" data-target="#delete"><i class="fa fa-trash-alt fa-2x"></i></a>-->
-                                 </form>
+                              </form>  
                            </td>
                         </tr>
                         @endforeach

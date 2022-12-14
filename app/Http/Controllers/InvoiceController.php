@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Invoice;
 use Illuminate\Http\Request;
+use DB;
 
 class InvoiceController extends Controller
 {
@@ -14,7 +15,12 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        return view('invoice');
+        $medicines = DB::table('medicines')
+        ->select('id','commercial_name')
+        ->get();
+
+        $stocks = DB::table('stocks')->select('stocks.*')->orderBy('expiry_date', 'asc')->get();
+        return view('invoice',compact('medicines'),compact('stocks'));
     }
 
     /**
@@ -81,5 +87,19 @@ class InvoiceController extends Controller
     public function destroy(Invoice $invoice)
     {
         //
+    }
+
+    public function getdetails(Request  $request)
+    {
+        $data = DB::table('stocks')->select('stocks.id')->where('medicine_id',$request->id)
+        ->take(100)->get();
+        return response()->json($data);
+    }
+
+    public function getUnitprice(Request  $request)
+    {
+        $data = DB::table('stocks')->select('stocks.unitprice')->where('id',$request->id)
+        ->take(100)->get();
+        return response()->json($data);
     }
 }

@@ -92,54 +92,6 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                           <td>10001
-                           </td>
-                           <td>5000
-                           </td>
-                           <td>10/19/2020
-                           </td>
-                           <td><form action="#" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <a style="color: rgb(17,122,139);" class="btn-xs" href="#" role="button"><i class="fa-regular fa-file fa-xl"></i></a>
-                                    <a style="color: rgb(0, 128, 0);" class="btn-xs" href="#" role="button"><i class="fa-regular fa-pen-to-square fa-xl"></i></a>
-                                    <button style="color: rgb(205,54,68);" class="btn-xsmall border-0 bg-transparent" type="submit"><i class="fa-regular fa-trash-alt fa-xl"></i></button>
-                            </form>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td>10002
-                           </td>
-                           <td>10000
-                           </td>
-                           <td>9/25/2020
-                           </td>
-                           <td><form action="#" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <a style="color: rgb(17,122,139);" class="btn-xs" href="#" role="button"><i class="fa-regular fa-file fa-xl"></i></a>
-                                    <a style="color: rgb(0, 128, 0);" class="btn-xs" href="#" role="button"><i class="fa-regular fa-pen-to-square fa-xl"></i></a>
-                                    <button style="color: rgb(205,54,68);" class="btn-xsmall border-0 bg-transparent" type="submit"><i class="fa-regular fa-trash-alt fa-xl"></i></button>
-                            </form>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td>10003
-                           </td>
-                           <td>1000
-                           </td>
-                           <td>2/10/2020
-                           </td>
-                           <td><form action="#" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <a style="color: rgb(17,122,139);" class="btn-xs" href="#" role="button"><i class="fa-regular fa-file fa-xl"></i></a>
-                                    <a style="color: rgb(0, 128, 0);" class="btn-xs" href="#" role="button"><i class="fa-regular fa-pen-to-square fa-xl"></i></a>
-                                    <button style="color: rgb(205,54,68);" class="btn-xsmall border-0 bg-transparent" type="submit"><i class="fa-regular fa-trash-alt fa-xl"></i></button>
-                            </form>
-                           </td>
-                        </tr>
                      </tbody>
                      </br>
                     </table>

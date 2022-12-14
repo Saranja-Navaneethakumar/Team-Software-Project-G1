@@ -65,79 +65,52 @@
       <form method="post" action="#">
                 @method('PUT')
                 @csrf
-                <div class="row">
-                     <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                           <strong>User Name:</strong>
-                           {{Auth::user()->username}}
-                        </div>
-                     </div>
-                     <div class="col-xs-12 col-sm-12 col-md-12">
-                         <div class="form-group">
-                          <strong>Password:</strong>
-                           {{Auth::user()->password}}
-                        </div>
-                     </div>
-                     <div class="col-xs-12 col-sm-12 col-md-12">
-                         <div class="form-group">
-                          <strong>Name:</strong>
-                           {{Auth::user()->name}}
-                        </div>
-                     </div>
-                     <div class="col-xs-12 col-sm-12 col-md-12">
-                         <div class="form-group">
-                          <strong>Address:</strong>
-                           {{Auth::user()->address}}
-                        </div>
-                     </div>
-                     <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                           <strong>Role:</strong>
-                           {{Auth::user()->role}}
-                        </div>
-                     </div>
-                     
-                     <div class="col-xs-12 col-sm-12 col-md-12">
-                         <div class="form-group">
-                          <strong>NIC No:</strong>
-                           {{Auth::user()->nic}}
-                        </div>
-                     </div>
-                     <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                           <strong>NIC file:</strong>
-                              {{Auth::user()->nicfile}}
+
+                <table>
+                     <tr>
+                        <th><div class="pr-5 pb-3" >User Name<div></th>
+                        <td><div class="pb-3">{{Auth::user()->username}}</div></td>
+                     </tr>
+                     <tr>
+                        <th><div class="pr-5 pb-3" >Name<div></th>
+                        <td><div class="pb-3">{{Auth::user()->name}}</div></td>
+                     </tr>
+                     <tr>
+                        <th><div class="pr-5 pb-3" >Address<div></th>
+                        <td><div class="pb-3">{{Auth::user()->address}}</div></td>
+                     </tr>
+                     <tr>
+                        <th><div class="pr-5 pb-3" >Role<div></th>
+                        <td><div class="pb-3">{{Auth::user()->role}}</div></td>
+                     </tr>
+                     <tr>
+                        <th><div class="pr-5 pb-3" >NIC number<div></th>
+                        <td><div class="pb-3">{{Auth::user()->nic}}</div></td>
+                     </tr>
+                     <tr>
+                        <th><div class="pr-5 pb-3" >NIC file<div></th>
+                        <td><div class="pb-3">{{Auth::user()->nicfile}}
                               <image height="150px" width="150px" src="{{'/uploads/nicfiles/'.Auth::user()->nicfile}}"/>
                               <a href="{{'/uploads/nicfiles/'.Auth::user()->nicfile}}"><i class="fa-solid fa-expand" 
-                              style="color: rgb(0, 0, 0);"></i></a>
-			               </div> 
-                     </div>
+                              style="color: rgb(0, 0, 0);"></i></a></div></td>
+                     </tr>
                      @if(Auth::user()->role=="Head Pharmacist")
-                     <div class="col-xs-12 col-sm-12 col-md-12">
-                         <div class="form-group">
-                          <strong>License :</strong>
-                          <image height="150px" width="150px" src="{{'/uploads/license/'.Auth::user()->license}}"/>
+                     <tr>
+                        <th><div class="pr-5 pb-3" >License<div></th>
+                        <td><div class="pb-3"><image height="150px" width="150px" src="{{'/uploads/license/'.Auth::user()->license}}"/>
                            <a href="{{'/uploads/license/'.Auth::user()->license}}"><i class="fa-solid fa-expand"
-                           style="color: rgb(0, 0, 0);"></i></a>
-                        </div>
-                     </div>
+                           style="color: rgb(0, 0, 0);"></i></a></div></td>
+                     </tr>
                      @endif
-                     <div class="col-xs-12 col-sm-12 col-md-12">
-                         <div class="form-group">
-                          <strong>Mobile No:</strong>
-                           {{Auth::user()->mobile}}
-                        </div>
-                     </div>
-                     <div class="col-xs-12 col-sm-12 col-md-12">
-                         <div class="form-group">
-                          <strong>Gender:</strong>
-                           {{Auth::user()->gender}}
-                        </div>
-                     </div>
-                     
-                  </div>
-               
-               </div>
+                     <tr>
+                        <th><div class="pr-5 pb-3" >Mobile number<div></th>
+                        <td><div class="pb-3">{{Auth::user()->mobile}}</div></td>
+                     </tr>
+                     <tr>
+                        <th><div class="pr-5 pb-3" >Gender<div></th>
+                        <td><div class="pb-3">{{Auth::user()->gender}}</div></td>
+                     </tr>
+                  </table>
                      <!-- /.card-body -->
          <!--<div class="col-md-12">
           <div class="card-footer">

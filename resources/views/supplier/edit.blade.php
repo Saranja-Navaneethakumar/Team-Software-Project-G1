@@ -69,12 +69,7 @@
          @method('PATCH')
          @csrf
       <div class="row">
-      <div class="col-md-4">
-            <div class="form-group">
-                <label>ID</label>
-                <input type="text" class="form-control" style="border-color: rgba(140, 133, 199);" name="id" value="{{$supplier->id}}" readonly>
-             </div>
-        </div>
+      
         <div class="col-md-4">
             <div class="form-group">
                 <label>Supplier Name</label>

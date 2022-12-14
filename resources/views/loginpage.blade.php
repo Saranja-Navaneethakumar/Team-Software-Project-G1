@@ -22,12 +22,14 @@
 </head>
 <body id="gradlogin">
 <div  class="container-lg">
-<div class="col-xl-3 col-md-6 mb-6 mx-auto">
+<div class="col-xl-3 mb-6 mx-auto">
 	<div class="row align-items-center vh-100">
-	<div class="card card-outline card-dark text-center mb-3 " style="width: 60rem; border-color: rgba(93, 85, 168);">
+	<div class="card card-outline card-dark text-center mb-3 shadow" style="width: 60rem; border-color: rgba(93, 85, 168);">
 	    <div class="card-header bg-transparent">
 		<h4 style="color: rgba(93, 85, 168);">Welcome to PSMS Login </h4>
-		<i class="fa fa-mortar-pestle fa-3x fa-beat-fade" style="color: rgba(93, 85, 168); --fa-animation-duration: 3s;"></i>
+		<!--<i class="fa fa-pills fa-3x fa-beat-fade" style="color: rgba(93, 85, 168); --fa-animation-duration: 3s;"></i>
+		<i class="fa-solid fa-syringe fa-3x fa-beat-fade" style="color: rgba(93, 85, 168); --fa-animation-duration: 3s;"></i>-->
+		<img src="/img/pharmacy.png" alt="PSMS Logo" width="100">
 	    </div>
 		
     	@if ($message = Session::get('error'))
@@ -46,7 +48,7 @@
 						</ul>
 			</div></br>
         @endif
-	    <div class="card-body card-outline card-dark text-center mb-3 " style="border-color: rgba(93, 85, 168);">
+	    <div class="card-body card-outline card-dark text-center mb-3 pr-4" style="border-color: rgba(93, 85, 168);">
 		<!--<img src="img/PSMS Logo.png" alt="PSMS Logo" width="100">-->
 		    <form method="post" action="{{ url('/userchecklogin') }}"> 
 			@csrf
@@ -54,11 +56,11 @@
 				<p>
 					<div class="form-group">
 					<div class="col-md-15">
-					<div class="input-group mb-3">
+					<div class="input-group mb-3 shadow" id="rcorners">
 						<div class="input-group-prepend">
 							<span class="input-group-text border-0 bg-transparent"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="text" class="form-control" style="border-color: rgba(93, 85, 168);" name="username" placeholder="UserName"/>
+						<input type="text" id="rcorners" class="form-control border-0" name="username" placeholder="User name"/>
 					</div>	
 					</div>
 					</div>
@@ -66,11 +68,11 @@
 				<p>
 					<div class="form-group">
 					<div class="col-md-15">
-					<div class="input-group mb-3">
+					<div class="input-group mb-3 shadow" id="rcorners">
 						<div class="input-group-prepend">
 							<span class="input-group-text border-0 bg-transparent"><span class="fas fa-lock"></span></i></span>
 						</div>
-						<input type="password" class="form-control" style="border-color: rgba(93, 85, 168);" name="password" placeholder="Password"/>
+						<input type="password" id="rcorners" class="form-control border-0" style="border-color: rgba(93, 85, 168);" name="password" placeholder="Password"/>
 					</div>
 					</div>
 					</div>
@@ -78,7 +80,7 @@
 				</p>
 				<p>
 					<div class="form-group">              
-						<button type="submit" class="btn btn-block" style="background-color: rgba(93, 85, 168); color:white"><i class="fas fa-users"></i> Login</button>
+						<button type="submit" id="rcorners" class="btn btn-block button1" style="background-color: rgba(93, 85, 168); color:white"><i class="fas fa-users"></i> Login</button>
 					<div>
 				<p>
 			</div>	

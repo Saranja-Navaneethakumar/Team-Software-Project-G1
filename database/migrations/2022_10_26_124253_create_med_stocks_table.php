@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('medicine_id');
             $table->unsignedBigInteger('stock_id');
             $table->foreign('medicine_id')->references('id')->on('medicines')->onUpdate('cascade');
-            $table->foreign('stock_id')->references('id')->on('stocks')->onUpdate('cascade');
+            $table->foreign('stock_id')->references('id')->on('stocks')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamp('created_time')->useCurrent();
         });
     }

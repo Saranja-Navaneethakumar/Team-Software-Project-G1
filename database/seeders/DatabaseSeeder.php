@@ -32,13 +32,13 @@ class DatabaseSeeder extends Seeder
         'mobile'=>'0779352589',
         'remember_token' => Str::random(10), ]);
 
-        DB::table('users')->insert(['username' => 'John',//Str::random(10),
+        DB::table('users')->insert(['username' => 'Fernando',//Str::random(10),
         'password' => Hash::make('JOHN@0912john'), 
         'role' => 'admin',
-        'name'=> 'John. J',
-        'address'=>'Colombo',
-        'nic'=>'968553256V',
+        'name'=> 'W.J.H.P. Fernando',
+        'address'=>'Marawila',
         'gender'=>'Male',
+        'nic'=>'968553265V',
         'mobile'=>'0779352539',
         'remember_token' => Str::random(10), ]);
     }

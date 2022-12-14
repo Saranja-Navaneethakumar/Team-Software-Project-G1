@@ -46,7 +46,11 @@ Route::get('/allstocks', [StockController::class,'showallstock'])->name('showall
 Route::get('/back', [UserController::class,'back'])->name('back');
 Route::get('/sales',[StockController::class,'sales'])->name('sales');
 Route::get('/myprofile', [UserController::class,'myprofile'])->name('myprofile');
-Route::get('/alerts', [UserController::class,'alerts'])->name('alerts');
+Route::get('/alerts', [StockController::class,'alerts'])->name('alerts');
+Route::get('/qtyalerts', [StockController::class,'qtyalerts'])->name('qtyalerts');
+Route::get('/totalstocks', [StockController::class,'totalstock'])->name('totalstock');
+Route::get('/getdetails', [InvoiceController::class,'getdetails'])->name('getdetails');
+Route::get('/getUnitprice', [InvoiceController::class,'getUnitprice'])->name('getUnitprice');
 //Route::get('/medicinescreate',[MedicineController::class, 'create'])->name('medicinescreate');
 //Route::get('/userscreate',[UserController::class, 'create'])->name('userscreate');
 //Route::get('/usersshow/{id}',[UserController::class, 'show'])->name('usersshow');

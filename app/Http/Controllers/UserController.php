@@ -171,7 +171,7 @@ class UserController extends Controller
         
         //$this->redirectTo = url()->previous()->previous();
         //return redirect()->route('User.manageuser')->with('success','User updated successfully!');
-        return back()->with('success','User Deleted successfully!!!');
+        return back()->with('success','User Updated successfully!!!');
     }
     /*
     public function update(Request $request, $id)
@@ -242,27 +242,7 @@ class UserController extends Controller
      {
         return redirect ()->back ();
      }
-     public function alerts(User $user)
-     {
-        $stocks = DB::table('stocks')->select('stocks.medicine_id','stocks.quantity', 'stocks.dosage','stocks.batch_no','stocks.expiry_date')
-        ->where('stocks.expiry_date', '<', Carbon::today()->addMonths(6))
-        ->get();
-        $expiryquantity = DB::table('stocks')
-        ->where('stocks.expiry_date', '<', Carbon::today()->addMonths(6))
-        ->get()->count();
-        $lessstocks = DB::table('stocks')->select('stocks.medicine_id','stocks.quantity', 'stocks.dosage','stocks.batch_no','stocks.expiry_date')
-        ->where('stocks.quantity', '<', 100)
-        ->get();
-        $medicines = DB::table('medicines')
-        ->select('id','commercial_name')
-        ->get();
-        return View::make('userpanel')
-                    ->with(compact('stocks'))
-                    ->with(compact('medicines'))
-                    ->with(compact('lessstocks'))
-                    ->with(compact('expiryquantity'));
-                    
-     }
+     
      public function myprofile(User $user)
      {
         return view('User.myprofile',compact('user'));

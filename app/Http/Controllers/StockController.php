@@ -73,7 +73,8 @@ class StockController extends Controller
             'unitcost'=> 'required',
             'expiry_date'=> 'required|after:'.$ex_date, 
             'supplier_name'=> 'required',
-            'box_size'=> ['required','numeric','min:0','not_in:0','unique:stocks,box_size'],
+            //'box_size'=> ['required','numeric','min:0','not_in:0','unique:stocks,box_size'],
+            'box_size'=>'required',
             'noboxes'=> 'required',
             'batch_no'=> 'required',
             'medicine_id'=>'required',
@@ -100,11 +101,6 @@ class StockController extends Controller
             'supplier_name'=> $request->get('supplier_name'),
             'created_by'=> $request->get('created_by'),
             'medicine_id'=> $request->get('medicine_id'),
-            /*$medid = DB::table('medicines')
-                ->select('medicines.id')
-                ->where('medicines.commercial_name', $request->get('commercial_name'))
-                ->get(),
-            'medicine_id'=> $medid, */
             'remember_token' => Str::random(8)
         ]);
         //$stock->id = $id;
@@ -114,6 +110,21 @@ class StockController extends Controller
             $med_stock->medicine_id = $stock->medicine_id;
             $med_stock->stock_id = $stock->id;
             $med_stock->save();
+            
+            /*$suppliers = DB::table('suppliers')
+            ->select('suppliers.id','suppliers.suppliername','suppliers.status')
+            ->where('suppliers.suppliername','stocks.supplier_name')
+            ->get();
+            foreach($suppliers as $supplier)
+            {
+                if($supplier->suppliername == $stock->supplier_name)
+                {
+                    if($supplier->status == 'Inactive')
+                    {
+                        $supplier->update(['status'=> 'Active']);
+                    }
+                }
+            }*/
 
         return back()->with('success','Stock created successfully!!!');
     }
@@ -126,7 +137,12 @@ class StockController extends Controller
      */
     public function show(Stock $stock)
     {
-        return view('stock.showstock',compact('stock'));
+        //$stocks = DB::table('stocks')->orderBy('id')->Paginate(5);
+        $medicines = DB::table('medicines')
+                ->select('id','commercial_name')
+                ->get();
+        return view('stock.showstock', compact('stock'), compact('medicines'));
+        //return view('stock.showstock',compact('stock'));
     }
 
     /**
@@ -158,7 +174,8 @@ class StockController extends Controller
         // add 90 days to the current time
         $ex_date = $current->addMonths(3);
         $request->validate([
-            'commercial_name' => 'required',
+            //'commercial_name' => 'required',
+            'medicine_id'=> 'required',
             'dosage'=> 'required',
             'unit'=> 'required',
             'unitprice'=> 'required',
@@ -172,7 +189,7 @@ class StockController extends Controller
             
         ]);
         $stock = Stock::find($stock->id);
-        $stock->commercial_name = $request->get('commercial_name');
+        $stock->medicine_id = $request->get('medicine_id');
         $stock->dosage = $request->get('dosage');
         $stock->unit = $request->get('unit');
         $stock->unitprice = $request->get('unitprice');
@@ -212,28 +229,66 @@ class StockController extends Controller
 
     public function showallstock()
     {
-        
-        /*$med_stocks = DB::table('med_stocks')
-        ->join('medicines','med_stocks.medicine_id', '=', 'medicines.id')
-        ->join('stocks', 'stocks.id', '=', 'med_stocks.stock_id')
-        ->selelct('medicines.*','stocks.*')
-        ->where('stocks.medicine_id', 'medicines.id')
-        ->get();
-        */
-
         $stocks = Stock::all();
         $medicines = DB::table('medicines')
                 ->select('medicines.*')
                 ->get();
 
-       /*$data =DB::table('orders')
-        ->join('users','orders.customer_id', '=','users.id')
-        ->join('products', 'products.id', '=', 'orders.product_id')
-        ->select('orders.id','orders.status','users.name', 'users.address', 'users.mobile', 'products.name as prod_name', 'products.detail','products.price', 'orders.created_at')
-        ->where('orders.employee_id',Auth::user()->id)
-        ->get();*/
-
         return view('stock.allstock',compact('stocks'), compact('medicines'));
      
     }
+    public function alerts()
+     {
+        $stocks = DB::table('stocks')->select('stocks.medicine_id','stocks.quantity', 'stocks.dosage','stocks.batch_no','stocks.expiry_date')
+        ->where('stocks.expiry_date', '<', Carbon::today()->addMonths(6))
+        ->get();
+        $expiryquantity = DB::table('stocks')
+        ->where('stocks.expiry_date', '<', Carbon::today()->addMonths(6))
+        ->get()->count();
+        $lessstocks = DB::table('stocks')->select('stocks.medicine_id','stocks.quantity', 'stocks.dosage','stocks.unit','stocks.batch_no','stocks.expiry_date')
+        ->where('stocks.quantity', '<', 100)
+        ->get();
+        $medicines = DB::table('medicines')
+        ->select('id','commercial_name')
+        ->get();
+        return View::make('stock.expiryalert')
+                    ->with(compact('stocks'))
+                    ->with(compact('medicines'))
+                    ->with(compact('lessstocks'))
+                    ->with(compact('expiryquantity'));
+                    
+     }
+
+     public function qtyalerts()
+     {
+       
+        $lessstocks = DB::table('stocks')->select('stocks.medicine_id','stocks.quantity', 'stocks.dosage','stocks.unit','stocks.batch_no','stocks.expiry_date')
+        ->where('stocks.quantity', '<', 100)
+        ->get();
+        $lessstockscount = DB::table('stocks')
+        ->where('stocks.quantity', '<', 100)
+        ->get()->count();
+        $medicines = DB::table('medicines')
+        ->select('id','commercial_name')
+        ->get();
+        return View::make('stock.qtyalert')
+                    ->with(compact('medicines'))
+                    ->with(compact('lessstocks'))
+                    ->with(compact('lessstockscount'));
+                    
+     }
+
+     public function totalstock()
+     {
+        /*$sum = collect($student)
+        ->reduce(function($carry, $item){
+        return $carry + $item["score"];
+        }, 0);*/
+        
+     }
+     /*public function getdetails($id)
+     {
+        $data = Stock::where('medicine_id',$id)->first();
+        return response()->json($data);
+     }*/
 }

@@ -149,6 +149,12 @@
                         <p>All stocks</p>
                      </a>
                   </li>
+                  <!--<li class="nav-item">
+                     <a href="{{route('totalstock')}}" class="nav-link">
+                        <i class="nav-icon fa fa-box-open fa-lg" style="color: rgb(255, 255, 255);"></i>
+                        <p>Total stocks</p>
+                     </a>
+                  </li>-->
                   <li class="nav-item">
                      <a href="{{route('stocks.index')}}" class="nav-link">
                         <i class="nav-icon fa fa-cog fa-lg" style="color: rgb(255, 255, 255);"></i>
@@ -263,6 +269,7 @@
                         <p>All stocks</p>
                      </a>
                   </li>
+                  
                   <li class="nav-item">
                      <a href="{{route('stocks.index')}}" class="nav-link">
                         <i class="nav-icon fa fa-cog fa-lg" style="color: rgb(255, 255, 255);"></i>
@@ -460,9 +467,12 @@
    @yield('medstock')
    @yield('sales')
    @yield('myprofile')
+   @yield('expiry')
+   @yield('lessqty')
 </div>
 <!--<div  class = "blend">
    <img src="/img/pharmacy.png"/>
    <h1>Pharmacy</h1>
+   
 </div>-->
 @endsection
